@@ -1,16 +1,191 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight, Leaf, Heart, ShieldCheck } from "lucide-react";
+import heroBg from "@/assets/hero-bg.jpg";
+import mangoPickle from "@/assets/product-mango-pickle.jpg";
+import murukulu from "@/assets/product-murukulu.jpg";
+import powders from "@/assets/category-powders.jpg";
+import { products } from "@/data/products";
+import ProductCard from "@/components/ProductCard";
+import { getWhatsAppUrl } from "@/components/WhatsAppButton";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.5 },
+  }),
+};
+
+const categoryData = [
+  { name: "Pickles", image: mangoPickle, slug: "Pickles" },
+  { name: "Snacks", image: murukulu, slug: "Snacks" },
+  { name: "Powders", image: powders, slug: "Powders" },
+];
+
+const testimonials = [
+  { name: "Priya R.", text: "Tastes exactly like my grandmother's pickle! The avakaya is absolutely divine. 🥭", rating: 5 },
+  { name: "Suresh K.", text: "Finally found authentic Andhra snacks online. The murukulu are addictive!", rating: 5 },
+  { name: "Anitha M.", text: "No preservatives, pure homemade taste. My whole family loves Mamatha Cooks! ❤️", rating: 5 },
+];
+
+const Index = () => {
+  const featured = products.slice(0, 4);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroBg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-foreground/60" />
+        </div>
+        <div className="relative container py-24 md:py-36 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-display text-4xl md:text-6xl font-bold text-primary-foreground leading-tight"
+          >
+            Authentic Homemade <br />
+            Andhra Flavors ❤️
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="font-body text-primary-foreground/80 text-lg md:text-xl mt-4 max-w-xl mx-auto"
+          >
+            Prepared with love, no preservatives, traditional recipes passed down through generations
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+          >
+            <Link
+              to="/products"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-body font-bold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Shop Now <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={getWhatsAppUrl("Hi, I want to order from Mamatha Cooks")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-foreground font-body font-bold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Order on WhatsApp
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="container py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {[
+            { icon: Leaf, title: "100% Natural", desc: "No preservatives or chemicals" },
+            { icon: Heart, title: "Made with Love", desc: "Traditional family recipes" },
+            { icon: ShieldCheck, title: "Quality Promise", desc: "Fresh ingredients, always" },
+          ].map((item, i) => (
+            <motion.div
+              key={item.title}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="flex items-center gap-4 bg-card rounded-lg p-5 warm-shadow"
+            >
+              <div className="bg-primary/10 rounded-full p-3">
+                <item.icon className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-display font-semibold">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="container py-10">
+        <div className="text-center mb-8">
+          <h2 className="font-display text-3xl font-bold">Our Bestsellers</h2>
+          <p className="text-muted-foreground mt-2">Loved by thousands of families across India</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {featured.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 font-body font-bold text-primary hover:underline"
+          >
+            View All Products <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="container py-10">
+        <h2 className="font-display text-3xl font-bold text-center mb-8">Shop by Category</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {categoryData.map((cat, i) => (
+            <motion.div
+              key={cat.name}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <Link
+                to={`/products?category=${cat.slug}`}
+                className="relative block rounded-lg overflow-hidden group aspect-[4/3]"
+              >
+                <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/50 transition-colors flex items-center justify-center">
+                  <h3 className="font-display text-2xl font-bold text-primary-foreground">{cat.name}</h3>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="container py-10">
+        <h2 className="font-display text-3xl font-bold text-center mb-8">What Our Customers Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.name}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="bg-card rounded-lg p-6 warm-shadow"
+            >
+              <p className="text-foreground italic leading-relaxed">"{t.text}"</p>
+              <p className="mt-4 font-body font-bold text-primary">{t.name}</p>
+              <div className="flex gap-0.5 mt-1">
+                {Array.from({ length: t.rating }).map((_, j) => (
+                  <span key={j} className="text-secondary">★</span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;

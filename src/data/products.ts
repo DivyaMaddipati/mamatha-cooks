@@ -1,14 +1,17 @@
 import mangoPickle from "@/assets/product-mango-pickle.jpg";
 import garlicPickle from "@/assets/product-garlic-pickle.jpg";
-import murukulu from "@/assets/product-murukulu.jpg";
-import chekkalu from "@/assets/product-chekkalu.jpg";
-import powders from "@/assets/category-powders.jpg";
+import lemonPickle from "@/assets/product-lemon-pickle.jpg";
+import tomatoPickle from "@/assets/product-tomato-pickle.jpg";
+import mixedPickle from "@/assets/product-mixed-pickle.jpg";
+import gingerPickle from "@/assets/product-ginger-pickle.jpg";
+import chiliPickle from "@/assets/product-chili-pickle.jpg";
+import amlaPickle from "@/assets/product-amla-pickle.jpg";
 
 export type Product = {
   id: number;
   name: string;
   price: number;
-  category: "Pickles" | "Snacks" | "Powders";
+  category: "Pickles";
   rating: number;
   image: string;
   description: string;
@@ -30,7 +33,7 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: "Garlic Pickle",
+    name: "Garlic Pickle (Velluli Pachadi)",
     price: 249,
     category: "Pickles",
     rating: 4.7,
@@ -41,48 +44,70 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: "Murukulu",
-    price: 150,
-    category: "Snacks",
-    rating: 4.8,
-    image: murukulu,
-    description: "Crispy, crunchy spiral snack made from rice flour and urad dal, seasoned with cumin and sesame. Deep-fried to golden perfection using our traditional recipe. Perfect with evening chai!",
-    ingredients: ["Rice Flour", "Urad Dal Flour", "Cumin Seeds", "Sesame Seeds", "Butter", "Salt"],
-    shelfLife: "3 months",
+    name: "Lemon Pickle (Nimma Kaya)",
+    price: 229,
+    category: "Pickles",
+    rating: 4.9,
+    image: lemonPickle,
+    description: "Tangy and zesty lemon pickle bursting with citrus goodness. Sun-ripened lemons are carefully marinated with mustard and chili, creating a bright, refreshing condiment that pairs perfectly with rice and dal.",
+    ingredients: ["Lemon", "Red Chili Powder", "Mustard Seeds", "Turmeric", "Sesame Oil", "Salt"],
+    shelfLife: "8 months",
   },
   {
     id: 4,
-    name: "Chekkalu",
-    price: 180,
-    category: "Snacks",
-    rating: 4.7,
-    image: chekkalu,
-    description: "Thin, crispy rice crackers infused with aromatic spices. These traditional Andhra snacks are sun-dried and deep-fried for that perfect crunch. One bite and you'll be transported to an Andhra kitchen!",
-    ingredients: ["Rice Flour", "Chili Flakes", "Cumin", "Sesame Seeds", "Salt"],
-    shelfLife: "3 months",
+    name: "Tomato Pickle (Tomato Pachadi)",
+    price: 199,
+    category: "Pickles",
+    rating: 4.6,
+    image: tomatoPickle,
+    description: "A sweet and tangy tomato pickle slow-cooked to perfection with aromatic spices. This unique Andhra delicacy has a rich, jammy texture that makes it irresistible with hot rice or rotis.",
+    ingredients: ["Tomatoes", "Red Chili Powder", "Mustard Seeds", "Fenugreek", "Jaggery", "Sesame Oil", "Salt"],
+    shelfLife: "4 months",
   },
   {
     id: 5,
-    name: "Karam Podi (Spice Powder)",
-    price: 199,
-    category: "Powders",
-    rating: 4.9,
-    image: powders,
-    description: "Fiery and flavorful Andhra-style spice powder, perfect to mix with hot rice and ghee. Made with roasted lentils and dry red chilies for an authentic taste that elevates every meal.",
-    ingredients: ["Red Chilies", "Urad Dal", "Chana Dal", "Garlic", "Salt", "Sesame Oil"],
-    shelfLife: "4 months",
+    name: "Mixed Vegetable Pickle",
+    price: 279,
+    category: "Pickles",
+    rating: 4.7,
+    image: mixedPickle,
+    description: "A vibrant medley of seasonal vegetables — carrots, cauliflower, green chilies, and raw mango — pickled in a robust mustard-chili masala. Every spoonful is a colorful burst of flavor and crunch.",
+    ingredients: ["Carrot", "Cauliflower", "Green Chili", "Raw Mango", "Mustard", "Red Chili Powder", "Sesame Oil", "Salt"],
+    shelfLife: "5 months",
   },
   {
     id: 6,
-    name: "Palli Podi (Peanut Powder)",
-    price: 179,
-    category: "Powders",
-    rating: 4.6,
-    image: powders,
-    description: "Nutty and spicy peanut powder made with roasted peanuts and dry red chilies. A versatile condiment that pairs beautifully with idli, dosa, or simply mixed into steaming rice.",
-    ingredients: ["Roasted Peanuts", "Red Chilies", "Garlic", "Cumin", "Salt"],
-    shelfLife: "4 months",
+    name: "Ginger Pickle (Allam Pachadi)",
+    price: 239,
+    category: "Pickles",
+    rating: 4.8,
+    image: gingerPickle,
+    description: "Warm and spicy ginger pickle made with tender young ginger, slow-marinated in a fiery chili-sesame blend. Known for its digestive benefits and its ability to add a zing to any meal.",
+    ingredients: ["Ginger", "Red Chili Powder", "Mustard Seeds", "Fenugreek", "Sesame Oil", "Salt"],
+    shelfLife: "6 months",
+  },
+  {
+    id: 7,
+    name: "Green Chili Pickle (Mirchi Pachadi)",
+    price: 219,
+    category: "Pickles",
+    rating: 4.5,
+    image: chiliPickle,
+    description: "For those who love the heat! Whole green chilies stuffed and marinated with aromatic spices in mustard oil. A bold, fiery pickle that adds excitement to every bite.",
+    ingredients: ["Green Chilies", "Mustard Powder", "Red Chili Powder", "Fenugreek", "Mustard Oil", "Salt"],
+    shelfLife: "6 months",
+  },
+  {
+    id: 8,
+    name: "Amla Pickle (Usirikaya Pachadi)",
+    price: 259,
+    category: "Pickles",
+    rating: 4.9,
+    image: amlaPickle,
+    description: "Nutrient-rich Indian gooseberry pickle packed with Vitamin C. The tangy, slightly bitter amla is beautifully balanced with warming spices, creating a pickle that's as healthy as it is delicious.",
+    ingredients: ["Amla (Gooseberry)", "Red Chili Powder", "Mustard Seeds", "Fenugreek", "Turmeric", "Sesame Oil", "Salt"],
+    shelfLife: "8 months",
   },
 ];
 
-export const categories = ["Pickles", "Snacks", "Powders"] as const;
+export const categories = ["Pickles"] as const;

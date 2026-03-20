@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Leaf, Heart, ShieldCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import mangoPickle from "@/assets/product-mango-pickle.jpg";
-import murukulu from "@/assets/product-murukulu.jpg";
-import powders from "@/assets/category-powders.jpg";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { getWhatsAppUrl } from "@/components/WhatsAppButton";
@@ -18,15 +16,9 @@ const fadeUp = {
   }),
 };
 
-const categoryData = [
-  { name: "Pickles", image: mangoPickle, slug: "Pickles" },
-  { name: "Snacks", image: murukulu, slug: "Snacks" },
-  { name: "Powders", image: powders, slug: "Powders" },
-];
-
 const testimonials = [
   { name: "Priya R.", text: "Tastes exactly like my grandmother's pickle! The avakaya is absolutely divine. 🥭", rating: 5 },
-  { name: "Suresh K.", text: "Finally found authentic Andhra snacks online. The murukulu are addictive!", rating: 5 },
+  { name: "Suresh K.", text: "The lemon pickle is addictive — tangy, spicy, and so fresh. Best I've ever had!", rating: 5 },
   { name: "Anitha M.", text: "No preservatives, pure homemade taste. My whole family loves Mamatha Cooks! ❤️", rating: 5 },
 ];
 
@@ -48,7 +40,7 @@ const Index = () => {
             className="font-display text-4xl md:text-6xl font-bold text-primary-foreground leading-tight"
           >
             Authentic Homemade <br />
-            Andhra Flavors ❤️
+            Andhra Pickles ❤️
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -127,35 +119,8 @@ const Index = () => {
             to="/products"
             className="inline-flex items-center gap-2 font-body font-bold text-primary hover:underline"
           >
-            View All Products <ArrowRight className="w-4 h-4" />
+            View All Pickles <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="container py-10">
-        <h2 className="font-display text-3xl font-bold text-center mb-8">Shop by Category</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {categoryData.map((cat, i) => (
-            <motion.div
-              key={cat.name}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-            >
-              <Link
-                to={`/products?category=${cat.slug}`}
-                className="relative block rounded-lg overflow-hidden group aspect-[4/3]"
-              >
-                <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/50 transition-colors flex items-center justify-center">
-                  <h3 className="font-display text-2xl font-bold text-primary-foreground">{cat.name}</h3>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
         </div>
       </section>
 

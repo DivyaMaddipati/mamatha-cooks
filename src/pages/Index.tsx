@@ -40,7 +40,7 @@ const Index = () => {
             className="font-display text-4xl md:text-6xl font-bold text-primary-foreground leading-tight"
           >
             Authentic Homemade <br />
-            Andhra Pickles ❤️
+            Andhra Pickles
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

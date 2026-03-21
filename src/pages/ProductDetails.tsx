@@ -14,6 +14,15 @@ const ProductDetails = () => {
   const { addToCart } = useCart();
   const [qty, setQty] = useState(1);
 
+  const weightOptions = [
+    { label: "1/4kg", value: 0.25, multiplier: 0.5 },
+    { label: "1/2kg", value: 0.5, multiplier: 1 },
+    { label: "1kg", value: 1, multiplier: 2 },
+    { label: "2kg", value: 2, multiplier: 4 },
+  ];
+  const [selectedWeight, setSelectedWeight] = useState(weightOptions[1]);
+  const displayPrice = Math.round(product ? product.price * selectedWeight.multiplier : 0);
+
   if (!product) {
     return (
       <div className="container py-20 text-center">
@@ -24,8 +33,8 @@ const ProductDetails = () => {
   }
 
   const handleAdd = () => {
-    for (let i = 0; i < qty; i++) addToCart(product);
-    toast.success(`${product.name} added to cart!`);
+    addToCart(product, qty, selectedWeight.label, selectedWeight.value, displayPrice);
+    toast.success(`${product.name} (${selectedWeight.label}) added to cart!`);
   };
 
   return (
@@ -51,7 +60,7 @@ const ProductDetails = () => {
           <span className="text-xs font-semibold text-primary uppercase tracking-wide">{product.category}</span>
           <h1 className="font-display text-3xl md:text-4xl font-bold mt-2">{product.name}</h1>
           <StarRating rating={product.rating} />
-          <p className="font-display text-3xl font-bold text-accent mt-4">₹{product.price}</p>
+          <p className="font-display text-3xl font-bold text-accent mt-4">₹{displayPrice}</p>
           <p className="text-muted-foreground leading-relaxed mt-4">{product.description}</p>
 
           <div className="mt-6">
@@ -68,6 +77,26 @@ const ProductDetails = () => {
           <p className="text-sm text-muted-foreground mt-4">
             <span className="font-semibold text-foreground">Shelf Life:</span> {product.shelfLife}
           </p>
+
+          {/* Weight Options */}
+          <div className="mt-6">
+            <h3 className="font-display font-semibold mb-3">Select Weight</h3>
+            <div className="flex flex-wrap gap-3">
+              {weightOptions.map((option) => (
+                <button
+                  key={option.label}
+                  onClick={() => setSelectedWeight(option)}
+                  className={`px-4 py-2 rounded-lg border text-sm font-semibold transition-colors ${
+                    selectedWeight.label === option.label
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border text-foreground hover:border-primary/50"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Quantity */}
           <div className="flex items-center gap-3 mt-6">

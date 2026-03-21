@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-card border-t border-border mt-16">
       <div className="container py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 className="font-display text-lg font-bold text-accent mb-3">🍛 Mamatha Cooks</h3>
+          <h3 className="font-display text-lg font-bold text-accent mb-3">Mamatha Cooks</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Authentic homemade Andhra pickles, snacks & powders. Made with love, no preservatives.
           </p>
@@ -22,10 +22,10 @@ const Footer = () => {
           <h4 className="font-display font-semibold mb-3">Get in Touch</h4>
           <div className="flex flex-col gap-2 text-sm text-muted-foreground">
             <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Phone className="w-4 h-4" /> +91 98765 43210
+              <Phone className="w-4 h-4" /> +91 9640483646
             </a>
             <a href="mailto:hello@mamathacooks.com" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail className="w-4 h-4" /> hello@mamathacooks.com
+              <Mail className="w-4 h-4" /> maddipatis111@gmail.com
             </a>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Minus, Plus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getWhatsAppUrl } from "@/components/WhatsAppButton";
+import { CheckoutModal } from "@/components/CheckoutModal";
 
 const Cart = () => {
   const { items, updateQuantity, removeFromCart, totalPrice, clearCart } = useCart();
@@ -26,7 +27,7 @@ const Cart = () => {
   }
 
   const whatsappMsg = items
-    .map((i) => `${i.product.name} x${i.quantity} (₹${i.product.price * i.quantity})`)
+    .map((i) => `${i.product.name} (${i.weightLabel}) x${i.quantity} (₹${i.price * i.quantity})`)
     .join("\n");
 
   return (
@@ -36,7 +37,7 @@ const Cart = () => {
       <div className="flex flex-col gap-4">
         {items.map((item) => (
           <motion.div
-            key={item.product.id}
+            key={item.id}
             layout
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,18 +50,23 @@ const Cart = () => {
               className="w-20 h-20 rounded-md object-cover"
             />
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-semibold text-sm md:text-base truncate">{item.product.name}</h3>
-              <p className="text-sm text-muted-foreground">₹{item.product.price} each</p>
-              <div className="flex items-center gap-2 mt-2">
+              <h3 className="font-display font-semibold text-sm md:text-base truncate">
+                {item.product.name}
+                <span className="inline-block ml-2 text-xs font-semibold bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20 align-middle">
+                  {item.weightLabel}
+                </span>
+              </h3>
+              <p className="text-sm text-muted-foreground mt-1">₹{item.price} each</p>
+              <div className="flex items-center gap-2 mt-3">
                 <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
                   className="w-7 h-7 rounded border border-border flex items-center justify-center hover:bg-muted"
                 >
                   <Minus className="w-3 h-3" />
                 </button>
                 <span className="font-body font-bold text-sm w-6 text-center">{item.quantity}</span>
                 <button
-                  onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
                   className="w-7 h-7 rounded border border-border flex items-center justify-center hover:bg-muted"
                 >
                   <Plus className="w-3 h-3" />
@@ -68,10 +74,10 @@ const Cart = () => {
               </div>
             </div>
             <div className="flex flex-col items-end justify-between">
-              <button onClick={() => removeFromCart(item.product.id)} className="text-muted-foreground hover:text-destructive">
+              <button onClick={() => removeFromCart(item.id)} className="text-muted-foreground hover:text-destructive">
                 <Trash2 className="w-4 h-4" />
               </button>
-              <span className="font-body font-bold text-accent">₹{item.product.price * item.quantity}</span>
+              <span className="font-body font-bold text-accent">₹{item.price * item.quantity}</span>
             </div>
           </motion.div>
         ))}
@@ -84,17 +90,7 @@ const Cart = () => {
           <span className="font-display text-2xl font-bold text-accent">₹{totalPrice}</span>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
-          <button className="flex-1 bg-primary text-primary-foreground font-body font-bold py-3 rounded-lg hover:opacity-90 transition-opacity">
-            Proceed to Checkout
-          </button>
-          <a
-            href={getWhatsAppUrl(`Hi, I want to order from Mamatha Cooks:\n\n${whatsappMsg}\n\nTotal: ₹${totalPrice}`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] text-primary-foreground font-body font-bold py-3 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            <MessageCircle className="w-4 h-4" /> Checkout via WhatsApp
-          </a>
+          <CheckoutModal items={items} totalPrice={totalPrice} whatsappMsg={whatsappMsg} />
         </div>
       </div>
     </div>

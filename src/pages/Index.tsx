@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, Heart, ShieldCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import mangoPickle from "@/assets/product-mango-pickle.jpg";
+import poster1 from "@/assets/poster-1.jpeg";
+import poster2 from "@/assets/poster-2.jpeg";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { getWhatsAppUrl } from "@/components/WhatsAppButton";
@@ -71,6 +72,47 @@ const Index = () => {
               Order on WhatsApp
             </a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Summer Special Posters */}
+      <section className="container py-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-display text-3xl font-bold text-center mb-2"
+        >
+          🥭 Summer Special Mango Pickles
+        </motion.h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Beat the heat with our authentic Andhra mango pickles — limited season, unlimited flavor!
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[poster1, poster2].map((poster, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              className="rounded-xl overflow-hidden warm-shadow-lg"
+            >
+              <img
+                src={poster}
+                alt={`Summer special mango pickle poster ${i + 1}`}
+                className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500"
+              />
+            </motion.div>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-bold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            Order Now <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

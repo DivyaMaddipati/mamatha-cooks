@@ -230,7 +230,12 @@ export const CheckoutModal = ({ items, totalPrice, whatsappMsg }: { items: any[]
             <p className="text-muted-foreground text-sm my-4">Please scan the QR code to complete the payment of <strong>₹{totalPrice}</strong></p>
             
             <div className="bg-white p-4 rounded-xl shadow-sm border border-border inline-block">
-              <img src={`http://localhost:5000/payment/qr.jpeg`} alt="Payment QR Code" className="w-48 h-48 object-cover rounded-md" />
+              {/* IMPORTANT: Replace "mamathacooks@ybl" with your actual merchant UPI ID below */}
+              <img 
+                src={`https://quickchart.io/qr?size=250x250&text=${encodeURIComponent(`upi://pay?pa=mamathacooks@ybl&pn=Mamatha Cooks&am=${totalPrice}&cu=INR`)}`} 
+                alt="Dynamic Payment QR Code" 
+                className="w-48 h-48 object-cover rounded-md" 
+              />
             </div>
             
             <div className="flex w-full gap-3 mt-8">

@@ -6,6 +6,8 @@ import mixedPickle from "@/assets/product-mixed-pickle.jpg";
 import gingerPickle from "@/assets/product-ginger-pickle.jpg";
 import chiliPickle from "@/assets/product-chili-pickle.jpg";
 import amlaPickle from "@/assets/product-amla-pickle.jpg";
+import maagayaPickle from "@/assets/product-maagaya.jpg";
+import ulliAavakayaPickle from "@/assets/product-ulli-aavakaya.jpg";
 
 export type Product = {
   id: number;

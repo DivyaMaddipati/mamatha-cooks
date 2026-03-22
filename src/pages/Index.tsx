@@ -75,6 +75,47 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Summer Special Posters */}
+      <section className="container py-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-display text-3xl font-bold text-center mb-2"
+        >
+          🥭 Summer Special Mango Pickles
+        </motion.h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Beat the heat with our authentic Andhra mango pickles — limited season, unlimited flavor!
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[poster1, poster2].map((poster, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              className="rounded-xl overflow-hidden warm-shadow-lg"
+            >
+              <img
+                src={poster}
+                alt={`Summer special mango pickle poster ${i + 1}`}
+                className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500"
+              />
+            </motion.div>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-bold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            Order Now <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Trust Badges */}
       <section className="container py-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">

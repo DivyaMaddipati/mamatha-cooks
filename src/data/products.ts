@@ -6,6 +6,8 @@ import mixedPickle from "@/assets/product-mixed-pickle.jpg";
 import gingerPickle from "@/assets/product-ginger-pickle.jpg";
 import chiliPickle from "@/assets/product-chili-pickle.jpg";
 import amlaPickle from "@/assets/product-amla-pickle.jpg";
+import maagayaPickle from "@/assets/product-maagaya.jpg";
+import ulliAavakayaPickle from "@/assets/product-ulli-aavakaya.jpg";
 
 export type Product = {
   id: number;
@@ -108,6 +110,30 @@ export const products: Product[] = [
     ingredients: ["Amla (Gooseberry)", "Red Chili Powder", "Mustard Seeds", "Fenugreek", "Turmeric", "Sesame Oil", "Salt"],
     shelfLife: "8 months",
   },
+  {
+    id: 9,
+    name: "Maagaya Pickle (Maagaya Pachadi)",
+    price: 319,
+    category: "Pickles",
+    rating: 4.9,
+    image: maagayaPickle,
+    description: "A beloved Andhra classic — tender raw mango pieces marinated in a rich blend of mustard, red chili, and fenugreek in cold-pressed sesame oil. Maagaya is the queen of summer pickles with its bold, tangy-spicy flavor.",
+    ingredients: ["Raw Mango", "Mustard Powder", "Red Chili Powder", "Fenugreek Seeds", "Sesame Oil", "Salt"],
+    shelfLife: "6 months",
+  },
+  {
+    id: 10,
+    name: "Ulli Aavakaya (Onion Mango Pickle)",
+    price: 329,
+    category: "Pickles",
+    rating: 4.8,
+    image: ulliAavakayaPickle,
+    description: "The perfect fusion of crunchy onions and tangy raw mango, slow-marinated in a fiery mustard-chili masala. Ulli Aavakaya is a unique Andhra specialty that adds an irresistible depth of flavor to every meal.",
+    ingredients: ["Raw Mango", "Onion", "Mustard Powder", "Red Chili Powder", "Fenugreek Seeds", "Sesame Oil", "Salt"],
+    shelfLife: "5 months",
+  },
 ];
 
 export const categories = ["Pickles"] as const;
+
+export const summerSpecialIds = [1, 9, 10, 4];

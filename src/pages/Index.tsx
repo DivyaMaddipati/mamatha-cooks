@@ -75,6 +75,35 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Summer Special Pickles */}
+      <section className="container py-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-display text-3xl font-bold text-center mb-2"
+        >
+          🌶️ Summer Special Pickles
+        </motion.h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Seasonal flavors crafted fresh this summer — order before they're gone!
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {summerSpecialIds.map((id) => {
+            const p = products.find((prod) => prod.id === id);
+            return p ? <ProductCard key={p.id} product={p} /> : null;
+          })}
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 font-body font-bold text-primary hover:underline"
+          >
+            View More Pickles <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Summer Special Posters */}
       <section className="container py-10">
         <motion.h2

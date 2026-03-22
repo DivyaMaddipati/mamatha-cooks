@@ -4,7 +4,7 @@ import { ArrowRight, Leaf, Heart, ShieldCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import poster1 from "@/assets/poster-1.jpeg";
 import poster2 from "@/assets/poster-2.jpeg";
-import { products } from "@/data/products";
+import { products, summerSpecialIds } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { getWhatsAppUrl } from "@/components/WhatsAppButton";
 
